@@ -4,3 +4,4 @@ doc/ImageCollection.pptx
 e2e/protractor.conf.js
 e2e/src/app.e2e-spec.ts
 e2e/tsconfig.json
+dist
