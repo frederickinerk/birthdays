@@ -40,15 +40,15 @@ export class BirthdaysComponent implements OnInit {
       return "./assets/images/rip.png";
 
     if (bd < 0)
-      //return "./assets/images/cake99.png";
-      return "https://s3-ap-southeast-2.amazonaws.com/higgins.one/birthdays/assets/images/cake99.png";
+      return "./assets/images/cake99.png";
+      //return "https://s3-ap-southeast-2.amazonaws.com/higgins.one/birthdays/assets/images/cake99.png";
 
-      return "https://s3-ap-southeast-2.amazonaws.com/higgins.one/birthdays/assets/images/cake" + bd.toString() + ".png";
-    //return "./assets/images/cake" + bd.toString() + ".png";
+    //return "https://s3-ap-southeast-2.amazonaws.com/higgins.one/birthdays/assets/images/cake" + bd.toString() + ".png";
+    return "./assets/images/cake" + bd.toString() + ".png";
   }
 
   getBirthdayDescription(bEvent) {     //ageAtBirthday,
-    var sexDesc:  String;
+    var sexDesc: String;
 
     if (bEvent.living == "False") {
       sexDesc = (bEvent.birthSex == "Male") ? "He" : "She";

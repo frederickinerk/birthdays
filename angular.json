@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "hohbirthdays": {
+    "birthdays": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/hohbirthdays",
+            "outputPath": "dist/birthdays",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -63,18 +63,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "hohbirthdays:build"
+            "browserTarget": "birthdays:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "hohbirthdays:build:production"
+              "browserTarget": "birthdays:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "hohbirthdays:build"
+            "browserTarget": "birthdays:build"
           }
         },
         "test": {
@@ -112,18 +112,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "hohbirthdays:serve"
+            "devServerTarget": "birthdays:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "hohbirthdays:serve:production"
+              "devServerTarget": "birthdays:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "hohbirthdays",
+  "defaultProject": "birthdays",
   "cli": {
     "analytics": "1c593edd-1913-49c6-b8c6-e69b790e2aae"
   }
