@@ -25,7 +25,8 @@ export class BirthdaysService {
   //private birthdayUrl = "https://www.mocky.io/v2/5e621af230000072004d574d";
   //private birthdayUrl = "http://www.mocky.io/v2/5e69de0b2d00005c005f9e25";
   //private birthdayUrl = "http://www.mocky.io/v2/5e69e0232d000076005f9e34";
-  private birthdayUrl = "http://www.mocky.io/v2/5e75d9af2f00006b00985f30";
+  //private birthdayUrl = "http://www.mocky.io/v2/5e75d9af2f00006b00985f30";
+  private birthdayUrl = "https://c9i8u0o5hb.execute-api.ap-southeast-2.amazonaws.com/DEV/birthdays";
 
   constructor(private http: HttpClient) {}
 
@@ -38,7 +39,7 @@ export class BirthdaysService {
 
 
     getBirthdays(daysBefore, daysAfter, allFlag, generations): Observable<BirthdayEvent[]> {
-      const url = `${this.birthdayUrl}?daysBefore=${daysBefore}&daysAfter=${daysAfter}&allflag=${allFlag}&generations="${generations}"`;
+      const url = `${this.birthdayUrl}?daysBefore=${daysBefore}&daysAfter=${daysAfter}&allFlag=${allFlag}&generations="${generations}"`;
       console.log("getBirthdays: URL = " + url)
       return this.http.get<BirthdayEvent[]>(url)
 

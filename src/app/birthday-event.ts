@@ -4,5 +4,7 @@ export class BirthdayEvent {
     ageAtBirthday: string;
     birthSex: string;
     living: boolean;
+    dobFmt: string;
+    dodFmt: string;
   }
   

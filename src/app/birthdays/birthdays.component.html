@@ -6,45 +6,53 @@
 			<table style="width:100%">
 				<tr *ngFor="let bd of birthdayEvents">
 					<td><img src="{{getImageName(bd.ageAtBirthday, bd.living)}}" alt="cake"></td>
-					<td class="{{getBirthdayTableStyle(bd)}}">{{getBirthdayDescription(bd)}}</td>
+					<td class="living">{{getBirthdayDescription(bd)}}</td>
 				</tr>
 			</table>
 		</mat-card-content>
 	</mat-card>
 
+	<div *ngIf="memorialEvents">
+		<mat-card class="example-result-card">
+			<mat-card-content>
+				<mat-card-title>Memorials</mat-card-title>
+				<table style="width:100%">
+					<tr *ngFor="let bd of memorialEvents">
+						<td class="memorialAge">{{bd.ageAtBirthday}}<br><p class="dateRelative">{{getMemorialDescription(bd)}}</p></td>
+						<td class="dead">{{bd.name}}<br><p class="dateRange">{{bd.dobFmt}} &mdash; {{bd.dodFmt}}</p></td>
+					</tr>
+				</table>
+			</mat-card-content>
+		</mat-card>
+	</div>
 
 	<mat-card class="example-result-card">
 		<mat-card-content>
 			<mat-card-title>Selectors</mat-card-title>
 			<section class="example-section">
-				<h3>Weeks until birthday</h3>
-				<mat-slider thumbLabel min="1" max="52" step="1" [(ngModel)]="preWeeks"></mat-slider>
-				<h3>Weeks since birthday</h3>
-				<mat-slider thumbLabel min="1" max="52" step="1" [(ngModel)]="postWeeks"></mat-slider>
+				<h3>Weeks until birthday ({{preWeeks}})</h3>
+				<mat-slider thumbLabel min="1" max="12" step="1" [(ngModel)]="preWeeks"></mat-slider>
+				<h3>Weeks since birthday ({{postWeeks}})</h3>
+				<mat-slider thumbLabel min="1" max="12" step="1" [(ngModel)]="postWeeks"></mat-slider>
 			</section>
 
 			<section class="example-section">
-				<mat-checkbox class="example-margin" [(ngModel)]="onlyLiving">Only the Living</mat-checkbox>
+				<mat-checkbox class="example-margin" [(ngModel)]="showMemorial">Show memorials</mat-checkbox>
 			</section>
 
 			<section class="example-section">
-				<h3>Generations</h3>
-				<mat-checkbox class="example-margin" [(ngModel)]="gen_M1">Herb, Grace, Hilda, Jack Level</mat-checkbox>
-				<mat-checkbox class="example-margin" [(ngModel)]="gen_P0">Nita, Reg Level</mat-checkbox>
-				<mat-checkbox class="example-margin" [(ngModel)]="gen_P1">Dennis, Jo Level</mat-checkbox>
-				<mat-checkbox class="example-margin" [(ngModel)]="gen_P2">Kaitlyn, Sandy Level</mat-checkbox>
-				<mat-checkbox class="example-margin" [(ngModel)]="gen_P3">Ava, Kyle Level</mat-checkbox>
+				<h3>Generations:&nbsp;</h3>
+				<mat-checkbox class="example-margin" [(ngModel)]="gen_M2">Older</mat-checkbox>
+				<mat-checkbox class="example-margin" [(ngModel)]="gen_M1">Grace</mat-checkbox>
+				<mat-checkbox class="example-margin" [(ngModel)]="gen_P0">Nita</mat-checkbox>
+				<mat-checkbox class="example-margin" [(ngModel)]="gen_P1">Jo</mat-checkbox>
+				<mat-checkbox class="example-margin" [(ngModel)]="gen_P2">Kaitlyn</mat-checkbox>
+				<mat-checkbox class="example-margin" [(ngModel)]="gen_P3">Ava</mat-checkbox>
 			</section>
 
 			<section class="example-section">
-				
 				<button mat-raised-button color="primary" (click)="onClickRefresh()">Refresh</button>
 			</section>
-
-			<br>
-			<p>preWeeks = {{preWeeks}}  || postWeeks = {{postWeeks}} || onlyLiving = {{onlyLiving}} || genations = {{getGenerationsString()}}</p>
-			<br>
-			<p></p>
 		</mat-card-content>
 	</mat-card>
 

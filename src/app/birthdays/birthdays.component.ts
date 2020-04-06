@@ -13,13 +13,15 @@ import { BirthdaysService } from "../birthdays.service";
 export class BirthdaysComponent implements OnInit {
 
   birthdayEvents: BirthdayEvent[];
+  memorialEvents: BirthdayEvent[];
   preWeeks = 4;
-  postWeeks = 1;
-  onlyLiving = true;
-  gen_M1 = true;
-  gen_P0 = true;
-  gen_P1 = true;
-  gen_P2 = true;
+  postWeeks = 4;
+  showMemorial = false;   
+  gen_M2 = false;
+  gen_M1 = false;
+  gen_P0 = false;
+  gen_P1 = false;
+  gen_P2 = false;
   gen_P3 = true;
 
   constructor(private birthdaysService: BirthdaysService) { }
@@ -28,10 +30,26 @@ export class BirthdaysComponent implements OnInit {
     this.getBirthdays();
   }
 
+  setData(birthdayEvents):void {
+    var i: number;
+    this.birthdayEvents = new Array;
+    this.memorialEvents = null;
+    for (i=0; i < birthdayEvents.length; i++){
+      if (birthdayEvents[i].living == "True")
+        this.birthdayEvents.push(birthdayEvents[i])
+      else{
+        if (this.memorialEvents == null)
+          this.memorialEvents = new Array;
+        this.memorialEvents.push(birthdayEvents[i])
+      }
+    }
+    //this.birthdayEvents = birthdayEvents;
+  }
+
   getBirthdays(): void {
     this.birthdaysService
-      .getBirthdays(this.preWeeks * 7, this.postWeeks * 7, !this.onlyLiving, this.getGenerationsString())
-      .subscribe(birthdayEvents => (this.birthdayEvents = birthdayEvents));
+      .getBirthdays(this.preWeeks * 7, this.postWeeks * 7, this.showMemorial, this.getGenerationsString())
+      .subscribe(birthdayEvents => (this.setData(birthdayEvents)));
   }
 
 
@@ -47,32 +65,36 @@ export class BirthdaysComponent implements OnInit {
     return "./assets/images/cake" + bd.toString() + ".png";
   }
 
-  getBirthdayDescription(bEvent) {     //ageAtBirthday,
-    var sexDesc: String;
-
-    if (bEvent.living == "False") {
-      sexDesc = (bEvent.birthSex == "Male") ? "He" : "She";
+  getBirthdayDescription(bEvent) { 
+    if (bEvent.ageAtBirthday == 0){
       if (bEvent.daysAway < 0)
-        return `It was been happy birthday to ${bEvent.name} ${(bEvent.daysAway * -1).toString()} ago.  ${sexDesc} would have turned ${bEvent.ageAtBirthday}`;
+        return `Big welcome to ${bEvent.name} ${(bEvent.daysAway * -1).toString()} days ago.`;
       else if (bEvent.daysAway == 0)
-        return `It would have been happy birthday to ${bEvent.name} today!. They would have turned ${bEvent.ageAtBirthday}`
-      else
-        return `It would have been  happy birthday to ${bEvent.name} in ${bEvent.daysAway.toString()} days time. ${sexDesc} would have turned ${bEvent.ageAtBirthday}`
+        return `Big welcome to ${bEvent.name} today!`
     }
-    //if (ageAtBirthday == -1)
-    //  return `${name} is having a birthday in ${daysAway.toString()} days time!`;
-
 
     if (bEvent.daysAway < 0)
-      return `It was happy birthday to ${bEvent.name} ${(bEvent.daysAway * -1).toString()} ago.`;
+      return `Happy birthday to ${bEvent.name} ${(bEvent.daysAway * -1).toString()} days ago.`;
     else if (bEvent.daysAway == 0)
-      return `It's happy birthday to ${bEvent.name} today!`
+      return `Happy birthday to ${bEvent.name} today!`
     else
-      return `It is happy birthday to ${bEvent.name} in ${bEvent.daysAway.toString()} days time`
+      return `Happy birthday to ${bEvent.name} in ${bEvent.daysAway.toString()} days`
   }
+
+  getMemorialDescription(bEvent) {
+    if (bEvent.daysAway < 0)
+      return `${(bEvent.daysAway * -1).toString()} days ago`;
+    else if (bEvent.daysAway == 0)
+      return `Today!`;
+    else
+      return `In ${bEvent.daysAway.toString()} days time`;
+  }
+
 
   getGenerationsString() {
     var ret = "";
+    if (this.gen_M2)
+      ret += "-2,";
     if (this.gen_M1)
       ret += "-1,";
     if (this.gen_P0)
@@ -95,16 +117,13 @@ export class BirthdaysComponent implements OnInit {
     this.getBirthdays();
   }
 
-  getBirthdayTableStyle(bEvent) {
-    if (bEvent.living == "False") {
-      return "dead";
-    }
-    else {
-      return "living"
-    }
-  }
-
 }
 
 //<button mat-fab color="primary">Refresh</button>
 //<button mat-button color="primary">Refresh</button>
+//<mat-divider [vertical]="true"></mat-divider>
+
+//<br>
+//<p>preWeeks = {{preWeeks}} || postWeeks = {{postWeeks}} || showMemorial = {{showMemorial}} || genations =
+//  {{getGenerationsString()}}</p>
+//<br>

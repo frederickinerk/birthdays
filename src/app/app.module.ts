@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox'; 
+import { MatDividerModule } from '@angular/material/divider';
 import { MatSliderModule } from '@angular/material/slider';
 
 
@@ -25,7 +26,7 @@ import { MatSliderModule } from '@angular/material/slider';
   imports: [
     FormsModule,
     BrowserModule, HttpClientModule, BrowserAnimationsModule, 
-    MatButtonModule, MatCardModule, MatCheckboxModule, MatSliderModule
+    MatButtonModule, MatCardModule, MatDividerModule, MatCheckboxModule, MatSliderModule
   ],
   providers: [BirthdaysService],
   bootstrap: [AppComponent]

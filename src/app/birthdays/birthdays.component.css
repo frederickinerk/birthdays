@@ -24,12 +24,17 @@ div{
     border-bottom: 1px solid blueviolet;
     color: #cc0099;
     text-align: center;
-    font: 24px arial, sans-serif;
+    font: 32px arial, sans-serif;
   }td.dead {
     border-bottom: 1px solid blueviolet;
     color: gray;
     text-align: center;
-    font: 24px arial, sans-serif, italic;
+    font: 32px arial, sans-serif, italic;
+  }td.memorialAge {
+    border-bottom: 1px solid blueviolet;
+    color: DarkSlateGray;
+    text-align: center;
+    font: 72px Alike, serif, italic;
   }
 
   img{
@@ -49,7 +54,7 @@ div{
   }
   
   .example-margin {
-    margin: 8px;
+    margin: 4px;
   }
   
   .mat-slider-horizontal {
@@ -66,4 +71,13 @@ div{
   
   .example-result-card h2 {
     margin: 0 8px;
+  }
+
+  p.dateRange {
+    text-align: center;
+    font: 16px Alike, serif, italic;
+  }
+  p.dateRelative {
+    text-align: center;
+    font: 12px Alike, serif, italic;
   }
