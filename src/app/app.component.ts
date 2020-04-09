@@ -11,6 +11,9 @@ export class AppComponent {
 
   ngOnInit() {
     var d = new Date();
-    this.todayStr = d; //d.toLocaleDateString();
+    var str: string;
+
+    str = d.toISOString()//d.toLocaleDateString(Intl.DateTimeFormat)
+    this.todayStr = str; //d.toLocaleDateString();
   }
 }
